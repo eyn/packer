@@ -1,0 +1,12 @@
+[submodule "puppet/modules/stdlib"]
+	path = puppet/modules/stdlib
+	url = http://github.com/puppetlabs/puppetlabs-stdlib
+[submodule "puppet/modules/apt"]
+	path = puppet/modules/apt
+	url = http://github.com/puppetlabs/puppetlabs-apt
+[submodule "puppet/modules/concat"]
+	path = puppet/modules/concat
+	url = http://github.com/puppetlabs/puppetlabs-concat
+[submodule "puppet/modules/nginx"]
+	path = puppet/modules/nginx
+	url = http://github.com/jfryman/puppet-nginx
