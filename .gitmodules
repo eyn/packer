@@ -10,3 +10,6 @@
 [submodule "puppet/modules/nginx"]
 	path = puppet/modules/nginx
 	url = http://github.com/jfryman/puppet-nginx
+[submodule "puppet/modules/puppet-rbenv"]
+	path = puppet/modules/puppet-rbenv
+	url = http://github.com/alup/puppet-rbenv
