@@ -5,3 +5,6 @@ wget --no-check-certificate -O authorized_keys 'https://github.com/mitchellh/vag
 mv authorized_keys /home/vagrant/.ssh
 chown -R vagrant /home/vagrant/.ssh
 chmod -R go-rwsx /home/vagrant/.ssh
+
+#make vagrant user able to do passwordless sudo
+echo 'vagrant  ALL=NOPASSWD: ALL' >> /etc/sudoers
