@@ -1,0 +1,29 @@
+
+worker_processes <%= @workers %>
+
+user "<%= @user %>", "<%= @group %>"
+
+working_directory "<%= @approot %>"
+
+listen "<%= @socket %>", :backlog => <%= @backlog %>
+
+timeout <%= @timeout %>
+
+pid "<%= @pidfile %>"
+
+preload_app <%= @preload_app %>
+
+<% if @log_dir %>
+stderr_path "<%= @log_dir %>/<%= @name %>.stderr.log"
+stdout_path "<%= @log_dir %>/<%= @name %>.stdout.log"
+<% end %>
+
+before_fork do |server, worker|
+  defined?(ActiveRecord::Base) and
+    ActiveRecord::Base.connection.disconnect!
+end
+
+after_fork do |server, worker|
+  defined?(ActiveRecord::Base) and
+    ActiveRecord::Base.establish_connection
+end
