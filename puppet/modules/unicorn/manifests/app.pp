@@ -15,7 +15,7 @@ define unicorn::app (
 ) {
 
 
-  $cmd = "unicorn -D -E ${rack_env} -c ${config_file}"
+  $cmd = "/var/www/.rbenv/shims/unicorn -D -E ${rack_env} -c ${config_file}"
 
   service { "unicorn_${name}":
     ensure     => running,
