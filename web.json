@@ -1,4 +1,8 @@
 {
+  "variables": {
+    "output_dir": "build",
+    "working_dir": "./"
+  },
   "builders": [{
     "type": "virtualbox-iso",
     "virtualbox_version_file": ".vbox_version",
@@ -22,7 +26,7 @@
     ],
     "boot_wait": "12s",
 
-    "http_directory": "http",
+    "http_directory": "{{user `working_dir`}}http",
     "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
 
     "ssh_username": "vagrant",
@@ -38,21 +42,21 @@
     "shutdown_command": "echo 'vagrant'|sudo -S /sbin/halt -h -p"
   }],
   "post-processors": [{
-    "output": "build/ubuntu-12.04-amd64.box",
+    "output": "{{user `output_dir`}}/ubuntu-12.04-amd64.box",
     "type": "vagrant"
   }],
   "provisioners": [{
     "type": "shell",
     "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
     "scripts": [
-      "scripts/vagrant.sh",
-      "scripts/vboxguest.sh",
-      "scripts/puppet.sh",
-      "scripts/compact.sh"
+      "{{user `working_dir`}}scripts/vagrant.sh",
+      "{{user `working_dir`}}scripts/vboxguest.sh",
+      "{{user `working_dir`}}scripts/puppet.sh",
+      "{{user `working_dir`}}scripts/compact.sh"
     ]
   },{
     "type": "puppet-masterless",
-    "manifest_file": "puppet/manifests/web.pp",
-    "module_paths": ["puppet/modules/"]
+    "manifest_file": "{{user `working_dir`}}puppet/manifests/web.pp",
+    "module_paths": ["{{user `working_dir`}}puppet/modules/"]
   }]
 }
